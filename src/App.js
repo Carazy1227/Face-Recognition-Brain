@@ -11,7 +11,7 @@ import Particles from 'react-particles-js';
 
 
 const app = new Clarifai.App({
-  apiKey: '9755ce806e5b4e3e859d5e1699748843'
+  apiKey:Clarifai.FACE_DETECT_MODEL,
  });
   
 
@@ -40,7 +40,6 @@ class App extends Component {
      const image = document.getElementById('inputimage');
      const width = Number(image.width);
      const height  = Number(image.height);
-     console.log(width,height)
    return{
      leftCol: clarifaiFace.left_col * width,
      topRow:clarifaiFace.top_row * height,
@@ -62,7 +61,7 @@ class App extends Component {
 this.setState({imageUrl: this.state.input});
     app.models
     .predict( 
-      a403429f2ddf4b49b307e318f00e528b ,
+      Clarifai.FACE_DETECT_MODEL,
      this.state.input)
      .then(response => this.displayFaceBox(this.calculateFaceLocation(response)))
     .catch(err => console.log(err))
